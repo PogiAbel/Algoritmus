@@ -6,8 +6,8 @@
 void *Slepp(void *threadid){
     long *tid = (long)threadid;
     int s = 4000;
-    printf("%ld Sleeping %d\n",tid, s);
     Sleep(s);
+    printf("%ld Sleeping %d\n",tid, s);
     pthread_exit(NULL);
 }
 
