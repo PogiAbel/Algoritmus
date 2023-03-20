@@ -3,114 +3,125 @@
 #include <time.h>
 #include <unistd.h>
 
-int sumArray(int array[], int size)
+
+int sumArray(int array[], int i)
 {
     int sum = 0;
-    for (int i = 0; i < size; i++)
-    {
+    for (int i = 0; i < i; i++)
+    {   
         sum += array[i];
     }
     return sum;
 }
 
-int minArray(int array[], int size)
+int minArray(int array[], int i)
 {
     int min = array[0];
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < i; i++)
     {
         if (array[i] < min)
         {
             min = array[i];
         }
     }
+
     return min;
 }
 
-int maxArray(int array[], int size)
+int maxArray(int array[], int i)
 {
     int max = array[0];
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < i; i++)
     {
         if (array[i] > max)
         {
             max = array[i];
         }
     }
+
     return max;
 }
 
-int sumArrayRec(int array[], int size)
+int sumArrayRec(int array[], int i)
 {
-    if (size == 1)
+    if (i == 1)
     {
         return array[0];
     }
-    return array[size - 1] + sumArrayRec(array, size - 1);
+    return array[i - 1] + sumArrayRec(array, i - 1);
 }
 
-int minArrayRec(int array[], int size)
+int minArrayRec(int array[], int i)
 {
-    if (size == 1)
+    if (i == 1)
     {
         return array[0];
     }
-    int min = minArrayRec(array, size - 1);
-    if (array[size - 1] < min)
+    int min = minArrayRec(array, i - 1);
+    if (array[i - 1] < min)
     {
-        min = array[size - 1];
+        min = array[i - 1];
     }
     return min;
 }
 
-int maxArrayRec(int array[], int size)
+int maxArrayRec(int array[], int i)
 {
-    if (size == 1)
+    if (i == 1)
     {
         return array[0];
     }
-    int max = maxArrayRec(array, size - 1);
-    if (array[size - 1] > max)
+    int max = maxArrayRec(array, i - 1);
+    if (array[i - 1] > max)
     {
-        max = array[size - 1];
+        max = array[i - 1];
     }
     return max;
 }
 
-double runTime(int array[], int size, int (*func)(int[], int))
+double runTime(int* array, int i, int (*func)(int[], int))
 {
+    // get the run time of the function 
     clock_t start, end;
     start = clock();
-    func(array, size);
+    int result =    func(array, i);
     end = clock();
-    printf("start: %f, end: %f\n", start, end);
-    return (double)(end - start) / (double)(CLOCKS_PER_SEC) ;
+    printf("Start: %f, End: %f\n", (double)start, (double)end);
+    double time = ((double)(end - start))/ CLOCKS_PER_SEC;
+     printf("Time : %f\n", time);
+    return time ;
+
+}
+
+int * getArray(int n){
+    int* array = malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++)
+    {
+        array[i] = rand() % 1000;
+    }
+    return array;
 }
 
 int main(int argc, char const *argv[])
 {
-    clock_t start, end;
-    int array[100000];
-    for (int i = 0; i < 100000; i++)
-    {
-        array[i] = rand() % 1000;
-    }
-    printf("1:%d, 10:%d, 100:%d\n", array[0], array[9], array[99]);
-    int size = sizeof(array) / sizeof(int);
-    start = clock();
-    printf("Sum of array: %d\n", sumArray(array, size));
-    printf("Min of array: %d\n", minArray(array, size));
-    printf("Max of array: %d\n", maxArray(array, size));
-    printf("Rec sum of array: %d\n", sumArrayRec(array, size));
-    printf("Rec min of array: %d\n", minArrayRec(array, size));
-    printf("Rec max of array: %d\n", maxArrayRec(array, size));
-    printf("Run time of sumArray: %f\n", runTime(array, size, sumArray));
-    printf("Run time of minArray: %f\n", runTime(array, size, minArray));
-    printf("Run time of maxArray: %f\n", runTime(array, size, maxArray));
-    printf("Run time of sumArrayRec: %f\n", runTime(array, size, sumArrayRec));
-    printf("Run time of minArrayRec: %f\n", runTime(array, size, minArrayRec));
-    printf("Run time of maxArrayRec: %f\n", runTime(array, size, maxArrayRec));
+    FILE *fp;
+    fp = fopen("gyak2_1.txt", "w");
+    fprintf(fp, "n, sum, min, max, sumRec, minRec, maxRec\n");
 
-    end = clock();
-    printf("Time spent: %f\n", (double)(end - start) / (double)(CLOCKS_PER_SEC) );
+    for (int i = 1000; i <= 10000; i+=1000)
+    {
+        int * array;
+        array = getArray(i);
+        double sumTime = runTime(array, i, sumArray);
+        double minTime = runTime(array, i, minArray);
+        double maxTime = runTime(array, i, maxArray);
+        double sumRecTime = runTime(array, i, sumArrayRec);
+        double minRecTime = runTime(array, i, minArrayRec);
+        double maxRecTime = runTime(array, i, maxArrayRec);
+        fprintf(fp, "%d, %f, %f, %f, %f ,%f, %f\n", i, sumTime, minTime, maxTime, sumRecTime, minRecTime, maxRecTime);
+        // printf( "%d, %f, %f, %f, %f ,%f, %f\n", i, sumTime, minTime, maxTime, sumRecTime, minRecTime, maxRecTime);
+        free(array);
+    }
+    fclose(fp);
     return 0;
 }
