@@ -17,9 +17,7 @@ def rec_sum(num:list):
         return num[0] + rec_sum(num[1:])
 
 def random_array():
-    arr = []
-    for i in range(ARRAY_SIZE):
-        arr.append(random.randint(1,1000))
+    arr = [random.randint(1,1000) for x in range(ARRAY_SIZE)]
     return arr
 
 def thread_sum(num:list):
@@ -28,11 +26,9 @@ def thread_sum(num:list):
 
 def main():
     arr = random_array()
-    little_arr = []
+    little_arr = [arr[i*THREADS:(i+1)*THREADS] for i in range(math.ceil(ARRAY_SIZE / THREADS))]
     db =math.ceil(ARRAY_SIZE / THREADS)
     threads = []
-    for i in range(db):
-        little_arr.append(arr[i*THREADS:(i+1)*THREADS])
     start = time.time()
     for i in range(db):
         threads.append(threading.Thread(target=thread_sum, args=(little_arr[i],)))
