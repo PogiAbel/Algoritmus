@@ -12,7 +12,7 @@ int main() {
     int correct = first + secound;
     int answer;
     printf("%d + %d = ",first,secound);
-    begin = clock()>
+    begin = clock();
     scanf("%d", &answer);
     end = clock();
     if(answer == correct){
