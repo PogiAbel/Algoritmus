@@ -1,5 +1,5 @@
-#ifndef STACK.h
-#define STACK.h
+#ifndef STACK_h
+#define STACK_h
 
 typedef struct node {
     int data;
