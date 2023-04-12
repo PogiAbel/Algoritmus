@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
     int top = 0;
     push(&s, 10);
     #pragma omp parallel for
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 100; i++)
     {
         push(&s, i);
         top = pop(&s);
