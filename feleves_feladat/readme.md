@@ -4,7 +4,7 @@
 - pthread:
 	Mátrix inverz
 
-- Mpi:
+- open mp:
 	Monte Carlo pi számolás
 
 - Szabadon választott:
