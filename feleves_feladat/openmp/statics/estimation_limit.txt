@@ -1,0 +1,23 @@
+Estimation limit: 0.001000
+Total count: 2095000
+Time: 0.081000
+
+Estimation limit: 0.000100
+Total count: 2335000
+Time: 0.100000
+
+Estimation limit: 0.000010
+Total count: 3525000
+Time: 0.152000
+
+Estimation limit: 0.000007
+Total count: 2850000
+Time: 0.119000
+
+Estimation limit: 0.000003
+Total count: 3810000
+Time: 0.161000
+
+Estimation limit: 0.000001
+Total count: 3175000
+Time: 0.139000
