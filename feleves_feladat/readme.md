@@ -4,7 +4,7 @@
 
 ### Mátrix inverz számítás Gauss–Jordan eliminációval :
 	
-	Adott NxN mátrix Gauss-Jordan módszer használatával invezének kiszámítása
+	Adott NxN mátrix Gauss-Jordan módszer használatával inverzének kiszámítása
 	
 	Párhozamosítás: algoritmus felbontása elkünötíthető részekre, sorok számolása párhuzamosítássa és osztott memóriával
 
