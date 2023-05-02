@@ -1,20 +1,20 @@
-# Monte Carlo - féle pi közelítés
+# Monte Carlo - féle π közelítés
 ## Feladat leírás:
-A pi számítására több módszer is létezik. Ebben a feladatban a Monte Carlo
+A π számítására több módszer is létezik. Ebben a feladatban a Monte Carlo
 módszert fogjuk alkalmazni. A módszer lényege, hogy egy egység oldalú négyzetbe beírt kör
 területét közelítjük a négyzet területével. Ehhez véletlenszerűen pontokat
 generálunk a négyzetbe, és megnézzük, hogy hány pont esik a körbe. A kör
 területének közelítéséhez a következő képletet használjuk:
-pi = 4 * (körbe eső pontok száma) / (összes pont száma)
+π = 4 * (körbe eső pontok száma) / (összes pont száma)
 
-![monte carlo pi közelítés](./picture/monteCarlo.png)
+![monte carlo π közelítés](./picture/monteCarlo.png)
 
 ## Algoritmus lépései:
 - N pont generálása
 - N pont ellenőrzése, hogy a körben vannak-e, felhasználva a Pitagorasz-tételt (a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>) a kör sugara 1, így a Pitagorasz-tétel a<sup>2</sup> + b<sup>2</sup> <= 1<sup>2</sup> = c<sup>2</sup> = 1
-- Pi közelítése : pi = 4 * (körbe eső pontok száma) / (összes pont száma)
+- π közelítése : π = 4 * (körbe eső pontok száma) / (összes pont száma)
 
-## Algorimus bonyolultsága:
+## Algoritmus bonyolultsága:
 - N pont generálása O(n)
 - N pont ellenőrzése O(n)
 - Összesen O(n)
