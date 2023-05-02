@@ -168,7 +168,7 @@ int main(int argc, char const *argv[])
     FILE *fp;
     fp = fopen("result_2d.txt", "w");
 
-    for (int n = 0; n < 500000; n+=100000)
+    for (int n = 100000; n < 500000; n+=100000)
     {
         fprintf(fp, "%d:\n", n);
         Result linear_result = linear(n);
