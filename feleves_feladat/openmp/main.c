@@ -165,22 +165,46 @@ int main(int argc, char const *argv[])
     srand(time(NULL));
     clock_t start, end;
 
+    double result_matrix[8][6];
+    result_matrix[0][0] = 0;
+    int row, col = 1;
+
     FILE *fp;
     fp = fopen("result_2d.txt", "w");
 
-    for (int n = 100000; n < 500000; n+=100000)
+    for (int n = 100000000; n <= 500000000; n+=100000000)
     {
-        fprintf(fp, "%d:\n", n);
+        row = 1;
+
         Result linear_result = linear(n);
-        fprintf(fp, "Linear: %f, %f\n", linear_result.pi, linear_result.time);
-        for (int thread_count = 10; thread_count <= 50; thread_count+=10)
+
+        result_matrix[0][col] = n;
+        result_matrix[row][0] = 1;
+        result_matrix[row][col] = linear_result.time;
+
+        for (int thread_count = 20; thread_count <= 120; thread_count+=20)
         {
+            row ++; 
             Result parallel_result = parallel(n, thread_count);
-            fprintf(fp, "Parallel: %f, %f\n", parallel_result.pi, parallel_result.time);
+            result_matrix[row][col] = parallel_result.time;
+            result_matrix[row][0] = thread_count;
         }
+
+        col ++;
+    }
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 6; j++)
+        {
+            fprintf(fp, "%f, ", result_matrix[i][j]);
+        }
+        fprintf(fp, "\n");
         
     }
+    
+
     fclose(fp);
+    printf("Done\n");
 
 
     return 0;
