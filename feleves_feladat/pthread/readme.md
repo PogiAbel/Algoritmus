@@ -6,6 +6,10 @@
 - Az eredményül kapott jobb oldali mátrix az eredeti mátrixunk inverze.
 ![gauss jordán](./pictures/matrix-gauss-jordan.svg)
 
+## Algoritmus lépései :
+- A mátrixot kiegészítjük az egységmátrixszal.
+
+
 ## Algoritmus komplexitása
 - A Gauss-Jordan elimináció komplexitása O(n^3)
-- A párhuzamosítás komplexitása O(n^3/p)
+- 

@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <pthread.h>
 #include <unistd.h>
 #include <math.h>
 #include <string.h>
+#include <time.h>
 
 int random_number(){
     // return random intiger between 0 and 99
@@ -160,8 +160,40 @@ int inverse(double* matrix, double* identity_matrix, int size) {
     //         matrix[i*size+j] = temp_matrix[i][j];
     //     }
     // }
-
+    printf("End with success\n");
     return 0; // Success
+}
+
+void inplace_inverse(double *A, int n) {
+    int i, j, k;
+    double pivot, factor;
+
+    // Loop over columns
+    for (j = 0; j < n; j++) {
+        // Select pivot element
+        pivot = A[j*n+j];
+
+        // Check if pivot is zero
+        if (pivot == 0.0) {
+            fprintf(stderr, "Error: matrix is singular\n");
+            exit(EXIT_FAILURE);
+        }
+
+        // Scale pivot row
+        for (k = 0; k < n; k++) {
+            A[j*n+k] /= pivot;
+        }
+
+        // Subtract scaled pivot row from other rows
+        for (i = 0; i < n; i++) {
+            if (i != j) {
+                factor = A[i*n+j];
+                for (k = 0; k < n; k++) {
+                    A[i*n+k] -= factor * A[j*n+k];
+                }
+            }
+        }
+    }
 }
 
 
@@ -178,22 +210,36 @@ void print_matrix(double* matrix, int size){
     printf("\n");
 }
 
-int main()
+int main(int argc, char const *argv[])
 {
     srand(time(NULL));
-    int n = 3;
-    double* matrix1 = random_matrix(n);
-    print_matrix(matrix1, n);
-    double* matrix2 = indentity_matrix(n);
-    int invertible = is_invertible(matrix1, n);
-    if(invertible){
-        inverse(matrix1, matrix2, n);
-        print_matrix(matrix1, n);
-        print_matrix(matrix2, n);
+    clock_t start, end;
+    int n = argv[1] ? atoi(argv[1]) : 3;
+    printf("n: %d\n", n);
+    double* matrix = random_matrix(n);
+    double* i_matrix = indentity_matrix(n);
+
+    int invertible = is_invertible(matrix, n);
+
+    while(!invertible){
+        free(matrix);
+        matrix = random_matrix(n);
+        invertible = is_invertible(matrix, n);
     }
-    else{
-        printf("Matrix is not invertible\n");
-    }
+    printf("The matrix is invertible\n");
+
+    start = clock();
+    // int success = inverse(matrix, i_matrix, n);
+    inplace_inverse(matrix, n);
+    end = clock();
+    // if(success == 0){
+    //     printf("Inverse matrix succecsful\n");
+    // }
+    // else{
+    //     printf("Matrix is not invertible\n");
+    // }
+    printf("Time taken: %f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
+
 
     return 0;
 }
