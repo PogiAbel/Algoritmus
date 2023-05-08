@@ -1,2 +1,2 @@
 all:
-	gcc main.c -fopenmp && ./a.exe
+	gcc main.c -fopenmp
