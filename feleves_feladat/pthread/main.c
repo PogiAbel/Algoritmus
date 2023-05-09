@@ -238,9 +238,9 @@ int main(int argc, char const *argv[])
     srand(time(NULL));
     int n = argv[1] ? atoi(argv[1]) : 3;
     FILE* fp;
-    fp = fopen("./statics/data_linear.txt", "w");
+    fp = fopen("./statics/data_linear_bigger.txt", "w");
 
-    for (n = 200; n<=1400; n+= 200){
+    for (n = 500; n<=2000; n+= 500){
         float time_taken = main_function_because_its_clenaer(n);
         fprintf(fp, "%d ,%f\n", n, time_taken);
     }

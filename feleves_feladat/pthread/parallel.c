@@ -163,7 +163,7 @@ float main_function(int n, FILE* fp){
     }
     
     // inverse matrix
-    for (int  i = 5; i <= 20; i+=5)
+    for (int  i = 5; i <= 50; i+=5)
     {
         start = clock();
         inplace_inverse(matrix, n, i);
@@ -178,9 +178,9 @@ float main_function(int n, FILE* fp){
 int main(int argc, char const *argv[])
 {
     srand(time(NULL));
-    FILE* fp = fopen("statics/data_parallel.txt", "w");
+    FILE* fp = fopen("statics/data_parallel_bigger.txt", "w");
 
-    for (int i = 200; i <= 1400; i+=200)
+    for (int i = 500; i <= 2000; i+=500)
     {
         main_function(i, fp);
     }
