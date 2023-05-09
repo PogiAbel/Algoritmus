@@ -210,15 +210,13 @@ void print_matrix(double* matrix, int size){
     printf("\n");
 }
 
-int main(int argc, char const *argv[])
-{
-    srand(time(NULL));
-    clock_t start, end;
-    int n = argv[1] ? atoi(argv[1]) : 3;
-    printf("n: %d\n", n);
+float main_function_because_its_clenaer(int n){
+    // return time taken to inverse a matrix
+    clock_t start,end;
     double* matrix = random_matrix(n);
     double* i_matrix = indentity_matrix(n);
 
+    // generate an invertable matrix
     int invertible = is_invertible(matrix, n);
 
     while(!invertible){
@@ -226,20 +224,27 @@ int main(int argc, char const *argv[])
         matrix = random_matrix(n);
         invertible = is_invertible(matrix, n);
     }
-    printf("The matrix is invertible\n");
 
+    // inverse the matrix
     start = clock();
-    // int success = inverse(matrix, i_matrix, n);
     inplace_inverse(matrix, n);
     end = clock();
-    // if(success == 0){
-    //     printf("Inverse matrix succecsful\n");
-    // }
-    // else{
-    //     printf("Matrix is not invertible\n");
-    // }
-    printf("Time taken: %f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 
+    return ((double) (end - start)) / CLOCKS_PER_SEC;
+}
 
+int main(int argc, char const *argv[])
+{
+    srand(time(NULL));
+    int n = argv[1] ? atoi(argv[1]) : 3;
+    FILE* fp;
+    fp = fopen("./statics/data_linear.txt", "w");
+
+    for (n = 200; n<=1400; n+= 200){
+        float time_taken = main_function_because_its_clenaer(n);
+        fprintf(fp, "%d ,%f\n", n, time_taken);
+    }
+    fclose(fp);
+    
     return 0;
 }
