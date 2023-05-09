@@ -8,8 +8,16 @@
 
 ## Algoritmus lépései :
 - A mátrixot kiegészítjük az egységmátrixszal.
+- Megkeressük a pivot elemet majd azt 1-re osztjuk.
+- A pivot elem alatti sorokat kivonjuk a pivot elem sorának szorzottjával.
+- Ezt ismételjük az összes sorra.
 
 
 ## Algoritmus komplexitása
 - A Gauss-Jordan elimináció komplexitása O(n^3)
 - 
+
+## Implementáció
+- Elsőnek egy memória igényes implementációt készítettem, ahol a mátrixot egy 2 dimenziós tömbben tároltam, majd létrehoztam egy másolatot ahol elvégeztem a műveleteket.
+- Viszont ennél eléggé gyorsan elértem a maximális stack memóriát(360 x 360 méretű mátrixnál), így kénytelen voltam egy másik implementációt készíteni, ahol a mátrixot egy tömben tároltam, és a műveleteket is ebben végeztem el.
+- A feljavított implementációval már eléggé nagy mátrixokat is ki tudtam számolni.

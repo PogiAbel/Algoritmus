@@ -1,2 +1,2 @@
 all:
-	gcc main.c && ./a.exe
+	gcc parallel.c -pthread -o parallel.exe
