@@ -21,3 +21,11 @@
 - Elsőnek egy memória igényes implementációt készítettem, ahol a mátrixot egy 2 dimenziós tömbben tároltam, majd létrehoztam egy másolatot ahol elvégeztem a műveleteket.
 - Viszont ennél eléggé gyorsan elértem a maximális stack memóriát(360 x 360 méretű mátrixnál), így kénytelen voltam egy másik implementációt készíteni, ahol a mátrixot egy tömben tároltam, és a műveleteket is ebben végeztem el.
 - A feljavított implementációval már eléggé nagy mátrixokat is ki tudtam számolni.
+
+## Párhuzamposítás
+- A feljavított inline algoritmust párhuzamosítottam úgy, hogy miután ki lett számolva a pivot elem, a többi sort párhuzamosan számolja ki a program.
+
+## Mérések
+![lineáris](./pictures/linear.png)
+![parallel](./pictures/parallel_small.png)
+![parallel](./pictures/parallel_big.png)
