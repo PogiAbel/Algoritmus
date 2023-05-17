@@ -15,7 +15,6 @@
 
 ## Algoritmus komplexitása
 - A Gauss-Jordan elimináció komplexitása O(n^3)
-- 
 
 ## Implementáció
 - Elsőnek egy memória igényes implementációt készítettem, ahol a mátrixot egy 2 dimenziós tömbben tároltam, majd létrehoztam egy másolatot ahol elvégeztem a műveleteket.

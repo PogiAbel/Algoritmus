@@ -6,11 +6,8 @@
 - Nem-maximum szupresszió
 - Hiszterézis küszöbölés
 
-## Algotimus komplexitása:
-- Zajszűrés: O(n^2)
-- Gradiens számítás: O(n^2)
-- Nem-maximum szupresszió: O(n^2)
-- Hiszterézis küszöbölés: O(n^2)
+## Algotimus idő komplexitása:
+- O(mn log(mn)), ahol n,m a kép mérete
 
 ## Párhuzamosítás:
 - Gradiens számítás párhuzamosítása: 
