@@ -6,8 +6,14 @@ import concurrent.futures
 from multiprocessing import Pool
 import time
 import math
+import sys
 
-img_path = 'input/me.jpg'
+img_name = ''
+try:
+    img_name = sys.argv[1]
+except:
+    img_name = "me.jpg"
+img_path = f'input/{img_name}'
 num_regions = 50
 
 def demonstrate():
